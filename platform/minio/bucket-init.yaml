@@ -3,6 +3,10 @@ kind: Job
 metadata:
   name: create-mlflow-bucket
   namespace: minio
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   template:
     spec:

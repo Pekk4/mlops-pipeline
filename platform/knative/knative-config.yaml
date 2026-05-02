@@ -8,8 +8,8 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/acme/mlops-pipeline.git
-    targetRevision: main
+    repoURL: https://github.com/pekk4/mlops-pipeline.git
+    targetRevision: master
     path: components/knative-config
   destination:
     server: https://kubernetes.default.svc
