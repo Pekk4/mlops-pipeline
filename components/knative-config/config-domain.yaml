@@ -3,5 +3,7 @@ kind: ConfigMap
 metadata:
   name: config-domain
   namespace: knative-serving
+  annotations:
+    argocd.argoproj.io/sync-wave: "4000"
 data:
   127.0.0.1.sslip.io: ""
