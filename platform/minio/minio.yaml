@@ -14,9 +14,11 @@ spec:
     helm:
       values: |
         image:
-          repository: docker.io/minio/minio
+          repository: docker.io/derklaro/minio
+          tag: RELEASE.2024-12-18T13-15-44Z
         mcImage:
-          repository: docker.io/minio/mc
+          repository: docker.io/derklaro/mc
+          tag: latest
 
         mode: standalone
 
