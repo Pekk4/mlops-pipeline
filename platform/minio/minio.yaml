@@ -13,6 +13,11 @@ spec:
     targetRevision: 5.4.0
     helm:
       values: |
+        image:
+          repository: docker.io/minio/minio
+        mcImage:
+          repository: docker.io/minio/mc
+
         mode: standalone
 
         persistence:
