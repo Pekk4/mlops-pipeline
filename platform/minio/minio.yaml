@@ -14,11 +14,11 @@ spec:
     helm:
       values: |
         image:
-          repository: docker.io/derklaro/minio
-          tag: RELEASE.2025-10-15T17-29-55Z
+          repository: docker.io/pgsty/minio
+          tag: latest
         mcImage:
-          repository: docker.io/derklaro/mc
-          tag: RELEASE.2025-10-15T17-29-55Z
+          repository: docker.io/pgsty/mc
+          tag: latest
 
         mode: standalone
 
@@ -56,31 +56,11 @@ spec:
           annotations: {}
           tls: []
 
-        extraDeploy:
-          - apiVersion: batch/v1
-            kind: Job
-            metadata:
-              name: create-mlflow-bucket
-              namespace: minio
-              annotations:
-                argocd.argoproj.io/hook: PostSync
-                argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
-            spec:
-              template:
-                spec:
-                  restartPolicy: OnFailure
-                  containers:
-                    - name: mc
-                      image: minio/mc:latest
-                      command:
-                        - /bin/sh
-                        - -c
-                        - |
-                          until mc alias set minio http://minio.minio.svc.cluster.local:9000 minioadmin minioadmin; do
-                            echo "waiting for minio..."
-                            sleep 5
-                          done
-                          mc mb --ignore-existing minio/mlflow
+        buckets:
+          - name: mlflow
+            policy: none
+            purge: false
+
   destination:
     server: https://kubernetes.default.svc
     namespace: minio
