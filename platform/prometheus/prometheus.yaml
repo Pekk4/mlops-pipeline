@@ -18,7 +18,7 @@ spec:
         server:
           ingress:
             enabled: true
-            ingressClassName: traefik
+            ingressClassName: istio
             hosts:
               - prometheus.local
             path: /

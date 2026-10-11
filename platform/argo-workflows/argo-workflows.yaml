@@ -41,7 +41,7 @@ spec:
             enabled: false
           ingress:
             enabled: true
-            className: traefik
+            className: istio
             hosts:
               - argo.local
             paths:

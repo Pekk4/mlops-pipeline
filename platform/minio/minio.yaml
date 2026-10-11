@@ -40,7 +40,7 @@ spec:
 
         ingress:
           enabled: true
-          ingressClassName: traefik
+          ingressClassName: istio
           path: /
           hosts:
             - minio.local
@@ -49,7 +49,7 @@ spec:
 
         consoleIngress:
           enabled: true
-          ingressClassName: traefik
+          ingressClassName: istio
           path: /
           hosts:
             - console.minio.local
