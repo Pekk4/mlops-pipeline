@@ -40,7 +40,7 @@ spec:
 
         ingress:
           enabled: true
-          className: traefik
+          className: istio
           annotations: {}
           hosts:
             - host: mlflow.local

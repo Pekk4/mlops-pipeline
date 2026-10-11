@@ -7,7 +7,8 @@ spec:
   project: default
   source:
     repoURL: https://github.com/pekk4/mlops-pipeline.git
-    targetRevision: dev
+    #targetRevision: c8720dd8c060d954b5d7093c3d30b87ea4932e7f
+    targetRevision: istiotest
     path: platform
     directory:
       recurse: true

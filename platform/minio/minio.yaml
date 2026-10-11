@@ -13,6 +13,13 @@ spec:
     targetRevision: 5.4.0
     helm:
       values: |
+        image:
+          repository: docker.io/pgsty/minio
+          tag: latest
+        mcImage:
+          repository: docker.io/pgsty/mc
+          tag: latest
+
         mode: standalone
 
         persistence:
@@ -33,7 +40,7 @@ spec:
 
         ingress:
           enabled: true
-          ingressClassName: traefik
+          ingressClassName: istio
           path: /
           hosts:
             - minio.local
@@ -42,38 +49,18 @@ spec:
 
         consoleIngress:
           enabled: true
-          ingressClassName: traefik
+          ingressClassName: istio
           path: /
           hosts:
             - console.minio.local
           annotations: {}
           tls: []
 
-        extraDeploy:
-          - apiVersion: batch/v1
-            kind: Job
-            metadata:
-              name: create-mlflow-bucket
-              namespace: minio
-              annotations:
-                argocd.argoproj.io/hook: PostSync
-                argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
-            spec:
-              template:
-                spec:
-                  restartPolicy: OnFailure
-                  containers:
-                    - name: mc
-                      image: minio/mc:latest
-                      command:
-                        - /bin/sh
-                        - -c
-                        - |
-                          until mc alias set minio http://minio.minio.svc.cluster.local:9000 minioadmin minioadmin; do
-                            echo "waiting for minio..."
-                            sleep 5
-                          done
-                          mc mb --ignore-existing minio/mlflow
+        buckets:
+          - name: mlflow
+            policy: none
+            purge: false
+
   destination:
     server: https://kubernetes.default.svc
     namespace: minio
