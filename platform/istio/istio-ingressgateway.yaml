@@ -16,7 +16,7 @@ spec:
         labels:
           istio: ingressgateway
         service:
-          type: NodePort
+          type: LoadBalancer
   destination:
     server: https://kubernetes.default.svc
     namespace: istio-system
