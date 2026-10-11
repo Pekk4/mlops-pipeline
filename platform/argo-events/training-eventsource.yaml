@@ -3,6 +3,8 @@ kind: EventSource
 metadata:
   name: training-webhook
   namespace: argo-events
+  annotations:
+    argocd.argoproj.io/sync-wave: "5000"
 spec:
   eventBusName: default
 

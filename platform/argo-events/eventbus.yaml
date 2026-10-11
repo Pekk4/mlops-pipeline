@@ -3,6 +3,8 @@ kind: EventBus
 metadata:
   name: default
   namespace: argo-events
+  annotations:
+    argocd.argoproj.io/sync-wave: "5000"
 spec:
   nats:
     native:

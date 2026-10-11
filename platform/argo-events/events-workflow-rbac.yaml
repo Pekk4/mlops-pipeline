@@ -3,12 +3,16 @@ kind: ServiceAccount
 metadata:
   name: argo-events-sa
   namespace: argo-events
+  annotations:
+    argocd.argoproj.io/sync-wave: "5000"
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: submit-workflows
   namespace: ml-workflows
+  annotations:
+    argocd.argoproj.io/sync-wave: "5000"
 rules:
   - apiGroups:
       - argoproj.io
@@ -26,6 +30,8 @@ kind: RoleBinding
 metadata:
   name: argo-events-submit-workflows
   namespace: ml-workflows
+  annotations:
+    argocd.argoproj.io/sync-wave: "5000"
 subjects:
   - kind: ServiceAccount
     name: argo-events-sa
