@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/pekk4/mlops-pipeline.git
-    targetRevision: dev
+    targetRevision: fix-argo-events-problem
     path: platform
     directory:
       recurse: true
