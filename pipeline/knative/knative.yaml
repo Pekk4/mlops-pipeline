@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: istio-ingressclass
+  name: knative
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "3"
@@ -10,10 +10,10 @@ spec:
   source:
     repoURL: https://github.com/pekk4/mlops-pipeline.git
     targetRevision: master
-    path: components/istio
+    path: static-manifests/knative-manifests
   destination:
     server: https://kubernetes.default.svc
-    #namespace: istio-system
+    namespace: knative-serving
   syncPolicy:
     automated:
       prune: true
