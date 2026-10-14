@@ -9,7 +9,7 @@ spec:
     repoURL: https://github.com/pekk4/mlops-pipeline.git
     #targetRevision: c8720dd8c060d954b5d7093c3d30b87ea4932e7f
     #targetRevision: istiotest
-    targetRevision: master
+    targetRevision: local-dev
     path: pipeline
     directory:
       recurse: true

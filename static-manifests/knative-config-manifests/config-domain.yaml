@@ -6,4 +6,5 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "5000"
 data:
-  127.0.0.1.sslip.io: ""
+  #127.0.0.1.sslip.io: ""
+  192.168.10.172.sslip.io: ""
