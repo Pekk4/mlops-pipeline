@@ -33,6 +33,8 @@ spec:
 
         alertmanager:
           enabled: true
+          alertmanagerSpec:
+            useExistingSecret: false
           config:
             global:
               resolve_timeout: 5m
