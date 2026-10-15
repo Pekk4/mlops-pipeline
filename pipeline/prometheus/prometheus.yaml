@@ -10,35 +10,26 @@ spec:
 
   source:
     repoURL: https://prometheus-community.github.io/helm-charts
-    chart: prometheus
-    targetRevision: 28.13.0
+    chart: kube-prometheus-stack
+    targetRevision: 89.2.0
     helm:
       releaseName: prometheus
       valuesObject:
-        server:
+        prometheus:
           ingress:
             enabled: true
             ingressClassName: istio
             hosts:
               - prometheus.local
-            path: /
+            paths:
+              - /
             pathType: Prefix
 
-        serverFiles:
-          alerting_rules.yml:
-            groups:
-              - name: wine-model.rules
-                rules:
-                  - alert: WineModelInferenceFailures
-                    expr: increase(model_infer_request_failure_total{serving_kserve_io_inferenceservice="wine"}[2m]) > 3
-                    for: 10s
-                    labels:
-                      severity: warning
-                      model: wine
-                      trigger: retraining
-                    annotations:
-                      summary: Wine model inference failures detected
-                      description: Demo retraining trigger fired from MLServer inference failure metric.
+          prometheusSpec:
+            ruleSelector:
+              matchLabels:
+                monitoring: model-rules
+            ruleNamespaceSelector: {}
 
         alertmanager:
           enabled: true
