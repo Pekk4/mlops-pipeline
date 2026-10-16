@@ -53,6 +53,8 @@ spec:
                   - url: http://training-webhook-eventsource-svc.argo-events.svc.cluster.local:12000/train
                     send_resolved: false
 
+              - name: 'null'
+
   destination:
     server: https://kubernetes.default.svc
     namespace: prometheus
