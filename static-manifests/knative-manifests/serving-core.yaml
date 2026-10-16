@@ -7768,8 +7768,8 @@ kind: ConfigMap
 metadata:
   name: config-domain
   namespace: knative-serving
-  annotations:
-    argocd.argoproj.io/sync-wave: "5000"
+  #annotations:
+  #  argocd.argoproj.io/sync-wave: "5000"
 data:
   #127.0.0.1.sslip.io: ""
   192.168.10.172.sslip.io: ""
@@ -8481,8 +8481,8 @@ kind: ConfigMap
 metadata:
   name: config-network
   namespace: knative-serving
-  annotations:
-    argocd.argoproj.io/sync-wave: "4000"
+  #annotations:
+  #  argocd.argoproj.io/sync-wave: "4000"
 data:
   ingress.class: istio.ingress.networking.knative.dev
 
