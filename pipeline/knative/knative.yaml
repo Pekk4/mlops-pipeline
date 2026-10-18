@@ -9,8 +9,8 @@ spec:
   project: default
   source:
     repoURL: https://github.com/pekk4/mlops-pipeline.git
-    targetRevision: master
-    path: static-manifests/knative-manifests
+    targetRevision: dev
+    path: static-manifests/knative
   destination:
     server: https://kubernetes.default.svc
     namespace: knative-serving
