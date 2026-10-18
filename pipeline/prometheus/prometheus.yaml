@@ -70,25 +70,14 @@ spec:
           enabled: true
           alertmanagerSpec:
             useExistingSecret: false
-          config:
-            global:
-              resolve_timeout: 5m
-
-            route:
-              receiver: argo-events-training
-              group_by:
-                - alertname
-              group_wait: 5s
-              group_interval: 30s
-              repeat_interval: 1h
-
-            receivers:
-              - name: argo-events-training
-                webhook_configs:
-                  - url: http://training-webhook-eventsource-svc.argo-events.svc.cluster.local:12000/train
-                    send_resolved: false
-
-              - name: 'null'
+          alertmanagerConfigSelector:
+            matchLabels:
+              alertmanagerConfig: pipeline
+          alertmanagerConfigNamespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: prometheus
+          alertmanagerConfigMatcherStrategy:
+            type: None
 
   destination:
     server: https://kubernetes.default.svc

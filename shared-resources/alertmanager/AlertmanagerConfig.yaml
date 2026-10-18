@@ -1,0 +1,24 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: argo-events-retrain
+  namespace: prometheus
+  labels:
+    alertmanagerConfig: pipeline
+spec:
+  route:
+    receiver: argo-events-retrain
+    groupBy:
+      - alertname
+      - model
+      - trigger
+    groupWait: 5s
+    groupInterval: 30s
+    repeatInterval: 1h
+  receivers:
+    - name: argo-events-retrain
+      webhookConfigs:
+        - url: http://training-webhook-eventsource-svc.argo-events.svc.cluster.local:12000/train
+          sendResolved: false
+
+    - name: 'null'
