@@ -70,14 +70,14 @@ spec:
           enabled: true
           alertmanagerSpec:
             useExistingSecret: false
-          alertmanagerConfigSelector:
-            matchLabels:
-              alertmanagerConfig: pipeline
-          alertmanagerConfigNamespaceSelector:
-            matchLabels:
-              kubernetes.io/metadata.name: prometheus
-          alertmanagerConfigMatcherStrategy:
-            type: None
+            alertmanagerConfigSelector:
+              matchLabels:
+                alertmanagerConfig: pipeline
+            alertmanagerConfigNamespaceSelector:
+              matchLabels:
+                kubernetes.io/metadata.name: prometheus
+            alertmanagerConfigMatcherStrategy:
+              type: None
 
   destination:
     server: https://kubernetes.default.svc
